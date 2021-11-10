@@ -12,7 +12,7 @@ export const databaseProviders = [
             return {
                 type: 'postgres' as 'postgres',
                 host: config.get(Configuration.HOST),
-                port: config.get(Configuration.PORT_PG),
+                port: +config.get(Configuration.PORT_PG),
                 database: config.get(Configuration.DATABASE),
                 username: config.get(Configuration.USERNAME),
                 password: config.get(Configuration.PASSWORD),

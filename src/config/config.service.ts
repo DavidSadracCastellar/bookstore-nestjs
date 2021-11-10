@@ -24,7 +24,7 @@ export class ConfigService {
         }
     }
 
-    get(key: string): string | number {
+    get(key: string): string {
         return this.envConfig[key];
     }
 }
