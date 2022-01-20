@@ -1,7 +1,8 @@
 import { BaseEntity, Column, CreateDateColumn, Entity, JoinColumn, JoinTable, ManyToMany, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
+import { TenancyModule } from "../tenancy/tenancy.module";
 import { User } from "../user/user.entity";
 
-@Entity('books')
+@Entity('books', { 'schema': `${TenancyModule.tenant}` })
 export class Book extends BaseEntity {
     @PrimaryGeneratedColumn('increment')
     id: number;
@@ -12,8 +13,8 @@ export class Book extends BaseEntity {
     @Column({type: 'varchar', length: 500, nullable: false})
     description: string;
 
-    @ManyToMany(() => User, user => user.books )
-    @JoinTable()
+    @ManyToMany(() => User, user => user.books)
+    @JoinColumn()
     authors: User[];
 
     @Column({ type: 'varchar', default: 'ACTIVE', length: 8 })

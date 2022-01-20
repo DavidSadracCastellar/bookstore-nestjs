@@ -4,7 +4,7 @@ import { Book } from '../book/book.entity';
 import { Role } from '../role/role.entity';
 import { UserDetails } from './user.details.entity';
 
-@Entity('users')
+@Entity('users', { 'schema': 'public' })
 export class User extends BaseEntity {
 
     @PrimaryGeneratedColumn('increment')

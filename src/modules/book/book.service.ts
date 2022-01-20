@@ -20,7 +20,7 @@ export class BookService {
     ){}
 
     async get(bookId: number): Promise<ReadBookDto>{
-        if(bookId){
+        if(!bookId){
             throw new BadRequestException("userId must be sent");
         }
 
@@ -120,15 +120,20 @@ export class BookService {
             throw new NotFoundException('This book does not exists');
         }
 
+        /*
         const isOwnBook = bookExists.authors.some(
-            (author) => author.id === authorId,
+            (author: User) => author.id === authorId
         );
 
         if(!isOwnBook){
             throw new UnauthorizedException(`This user isn't the book's author`);
         }
+        */
 
-        const updatedBook = await this._bookRepository.update(bookId, book);
+        bookExists.name = book.name;
+        bookExists.description = book.description;
+        
+        const updatedBook: Book = await this._bookRepository.save(bookExists);
 
         return plainToClass(ReadBookDto, updatedBook);
     }

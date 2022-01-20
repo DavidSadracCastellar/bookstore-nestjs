@@ -1,7 +1,8 @@
 import { BaseEntity, Column, CreateDateColumn, Entity, JoinColumn, ManyToMany, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
+import { TenancyModule } from "../tenancy/tenancy.module";
 import { User } from "../user/user.entity";
 
-@Entity('roles')
+@Entity('roles', { 'schema': `${TenancyModule.tenant}` })
 export class Role extends BaseEntity {
     @PrimaryGeneratedColumn('increment')
     id: number;

@@ -10,7 +10,6 @@ export class ConfigService {
         if(isDevelopmentEnv){
             const envFilePath = __dirname + '/../../.env';
             const existsPath = fs.existsSync(envFilePath);
-            
             if(!existsPath){
                 console.log('.evn file does not exist');
                 process.exit(0);
