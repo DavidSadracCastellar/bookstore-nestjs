@@ -42,7 +42,7 @@ export class TenancyService {
 
 
         // `CREATE SCHEMA IF NOT EXISTS ${tenancy.name} AUTHORIZATION ${this._configService.get(Configuration.USERNAME)}`
-
+        // sql para crear badadatos para el Tenancy
         await this._connection.query(`CREATE DATABASE IF NOT EXISTS ${tenancy.name}`);
 
         return plainToClass(ReadTenancyDto, savedTenancy);
